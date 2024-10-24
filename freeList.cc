@@ -66,17 +66,19 @@ void freeList::coalesce_forward() {
     while (current != NULL && current[1] != (long int)NULL) {
         long int* next = (long int*)current[1];
 
-  
+        // Check if `current` and `next` are adjacent in memory
         if ((current + current[0] + 2) == next) {
-          
-            current[0] += next[0] + 2; 
-            current[1] = next[1];      
+            // Merge `current` and `next` blocks
+            current[0] += next[0] + 2; // Combine sizes, including the size of the metadata
+            current[1] = next[1];      // Skip over `next` to link to the block after it
         } else {
-        
+            // Move to the next block if they are not adjacent
             current = next;
         }
     }
 }
+
+
 
 
 void freeList::print() {

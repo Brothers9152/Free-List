@@ -38,7 +38,3 @@ int main() {
     delete[] RAM;
     return 0;
 }
-
-  delete RAM;
-  return 0;
-}
